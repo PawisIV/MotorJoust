@@ -1,12 +1,13 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://icon.png" type="Texture" id=1]
 [ext_resource path="res://Script/CharacterMovement.gd" type="Script" id=2]
+[ext_resource path="res://Scene/EnemySpawner.tscn" type="PackedScene" id=3]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 50.6996, 49.4743 )
 
-[node name="Node2D" type="Node2D"]
+[node name="MainScene" type="Node2D"]
 
 [node name="Player" type="KinematicBody2D" parent="."]
 script = ExtResource( 2 )
@@ -20,3 +21,5 @@ position = Vector2( 421, 273 )
 rotation = -3.14159
 scale = Vector2( 0.611445, -0.606376 )
 shape = SubResource( 1 )
+
+[node name="EnemySpawner" parent="." instance=ExtResource( 3 )]
