@@ -12,5 +12,5 @@ z_index = -1
 
 [node name="EnemySpawner" parent="." instance=ExtResource( 3 )]
 
-[node name="Node2D" parent="." instance=ExtResource( 1 )]
-position = Vector2( 611, 369 )
+[node name="PlayerNode" parent="." instance=ExtResource( 1 )]
+position = Vector2( 509, 297 )
