@@ -9,8 +9,11 @@ extents = Vector2( 50.6996, 49.4743 )
 
 [node name="MainScene" type="Node2D"]
 
-[node name="Player" type="KinematicBody2D" parent="."]
-script = ExtResource( 2 )
+[node name="Floor" type="Sprite" parent="."]
+position = Vector2( 241, 86 )
+scale = Vector2( 100, 100 )
+z_index = -1
+texture = ExtResource( 3 )
 
 [node name="Sprite" type="Sprite" parent="Player"]
 position = Vector2( 421, 274 )
