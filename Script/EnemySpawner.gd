@@ -15,4 +15,6 @@ func _on_Timer_timeout():
 	#spawn enemy
 	var enemy = enemy1_scene.instance()
 	enemy.position = spawn.position
+	enemy.add_to_group("enemies")
 	main.add_child(enemy)
+	

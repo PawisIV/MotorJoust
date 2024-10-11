@@ -25,4 +25,5 @@ texture = ExtResource( 1 )
 position = Vector2( -6.10352e-05, 0 )
 rotation = -1.57079
 current = true
+zoom = Vector2( 2, 2 )
 smoothing_enabled = true
