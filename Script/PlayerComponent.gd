@@ -18,31 +18,40 @@ func _ready():
 func _process(_delta):
 	if Input.is_action_pressed("ui_up"):
 		p_node.emit_signal("force_up", 1)
-		if p_node.velocity.y > 0 :
+		if Input.is_action_pressed("ui_up") and Input.is_action_pressed("ui_left") :
 			emit_signal("play_animation","PlayerUpRight",true) 
-		elif p_node.velocity.y < 0 :
+		elif Input.is_action_pressed("ui_up") and Input.is_action_pressed("ui_right") :
 			emit_signal("play_animation","PlayerUpRight",false) 
-		elif p_node.velocity.y == 0 :
+		else :
 			emit_signal("play_animation","PlayerUp",false) 
 
 	elif Input.is_action_pressed("ui_down"):
 		p_node.emit_signal("force_down", 1)
-		if p_node.velocity.y > 0 :
+		if Input.is_action_pressed("ui_down") and Input.is_action_pressed("ui_left") :
 			emit_signal("play_animation","PlayerDownRight",true) 
-		elif p_node.velocity.y < 0 :
+		elif Input.is_action_pressed("ui_down") and Input.is_action_pressed("ui_right") :
 			emit_signal("play_animation","PlayerDownRight",false) 
-		elif p_node.velocity.y == 0 :
+		else :
 			emit_signal("play_animation","PlayerDown",false) 
 	else:
 		p_node.emit_signal("force_up", 0)  # Neutral value for vertical movement
 		p_node.emit_signal("force_down", 0)  # Neutral value for vertical movement
-
 	if Input.is_action_pressed("ui_left"):
 		p_node.emit_signal("force_left", 1)
-		emit_signal("play_animation","PlayerRight",true) #testanim
+		if Input.is_action_pressed("ui_left") and Input.is_action_pressed("ui_up") :
+			emit_signal("play_animation","PlayerUpRight",true) 
+		elif Input.is_action_pressed("ui_left") and Input.is_action_pressed("ui_down") :
+			emit_signal("play_animation","PlayerDownRight",true) 
+		else :
+			emit_signal("play_animation","PlayerRight",true) 
 	elif Input.is_action_pressed("ui_right"):
 		p_node.emit_signal("force_right", 1)
-		emit_signal("play_animation","PlayerRight",false) #testanim
+		if Input.is_action_pressed("ui_right") and Input.is_action_pressed("ui_up") :
+			emit_signal("play_animation","PlayerUpRight",false) 
+		elif Input.is_action_pressed("ui_right") and Input.is_action_pressed("ui_down") :
+			emit_signal("play_animation","PlayerDownRight",false) 
+		else :
+			emit_signal("play_animation","PlayerRight",false) 
 	else:
 		p_node.emit_signal("force_right", 0)
 		p_node.emit_signal("force_left", 0)
