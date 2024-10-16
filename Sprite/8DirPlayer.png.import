@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/8_dir_main.png-aee19a546c505f7ca89e78ec7331f055.stex"
+path="res://.import/8DirPlayer.png-019b8aaa3b06dee8f09d0b86a545fb3c.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Materials/8_dir_main.png"
-dest_files=[ "res://.import/8_dir_main.png-aee19a546c505f7ca89e78ec7331f055.stex" ]
+source_file="res://Sprite/8DirPlayer.png"
+dest_files=[ "res://.import/8DirPlayer.png-019b8aaa3b06dee8f09d0b86a545fb3c.stex" ]
 
 [params]
 

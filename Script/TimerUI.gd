@@ -13,5 +13,5 @@ func time_left_to_live():
 	var second = int(time_left)
 	return [second]
 
-func _process(delta):
+func _process(_delta):
 	Label.text = "%02d"% time_left_to_live()
