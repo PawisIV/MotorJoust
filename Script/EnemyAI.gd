@@ -8,6 +8,7 @@ var velocity = Vector2.ZERO
 var charging = false
 var approach_offset = 45  # Angle offset for smarter approach (in degrees)
 var zigzag_pattern = false  # Enable zigzag pattern
+var random_charge_threshold = 0.01  # Probability of charging each frame (adjust this value for randomness)
 
 func _ready():
 	player = get_node("/root/MainScene/PlayerNode/PhysicComponent")
@@ -33,8 +34,8 @@ func _physics_process(delta):
 			var target_angle = direction_with_offset.angle()
 			rotation = lerp_angle(rotation, target_angle, turn_speed * delta)
 
-		# If the enemy is close to the player, start charging
-		if global_position.distance_to(player.global_position) < 150 and not charging:
+		# Randomly trigger charging behavior
+		if randi() % 100 < random_charge_threshold * 100 and not charging:
 			charging = true
 
 		# Charging behavior: Move directly towards the player without offsets

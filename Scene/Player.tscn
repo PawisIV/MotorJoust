@@ -5,7 +5,8 @@
 [ext_resource path="res://Script/PhysicComponent.gd" type="Script" id=3]
 [ext_resource path="res://Scene/PlayerAnimator.gd" type="Script" id=4]
 [ext_resource path="res://Sprite/8_dir_main.png" type="Texture" id=5]
-[ext_resource path="res://Scene/AttackAnimHandler.gd" type="Script" id=7]
+[ext_resource path="res://Script/AttackAnimHandler.gd" type="Script" id=7]
+
 
 [sub_resource type="RectangleShape2D" id=45]
 extents = Vector2( 66.5, 68 )
