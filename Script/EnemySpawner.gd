@@ -5,7 +5,7 @@ var enemy_1 := preload("res://Scene/Enemy/Enemy.tscn")  # Old movement
 var enemy_2 := preload("res://Scene/Enemy/Enemy_2.tscn")  # New movement
 var spawn_points := []
 export var max_enemies = 5  # Maximum number of enemies to spawn
-export var spawn_interval = 2.0  # Time in seconds between spawns
+export var spawn_interval = 20000.0  # Time in seconds between spawns
 var enemies_spawned = 0  # Counter for spawned enemies
 
 func _ready():
