@@ -182,18 +182,6 @@ tracks/1/keys = {
 "update": 1,
 "values": [ true, false ]
 }
-tracks/2/type = "value"
-tracks/2/path = NodePath("Area2D/PlayerAttackHit:disabled")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/keys = {
-"times": PoolRealArray( 0, 0.2 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 1,
-"values": [ true, true ]
-}
 
 [sub_resource type="Animation" id=47]
 length = 0.001
@@ -281,6 +269,7 @@ anims/RESET = SubResource( 47 )
 script = ExtResource( 7 )
 
 [node name="Area2D" type="Area2D" parent="PhysicComponent"]
+collision_layer = 4
 script = ExtResource( 8 )
 
 [node name="PlayerAttackHit" type="CollisionShape2D" parent="PhysicComponent/Area2D"]

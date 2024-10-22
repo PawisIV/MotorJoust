@@ -1,6 +1,6 @@
 extends Area2D
 
-var attack_damage = 1000000
+var attack_damage = 10
 var is_attacking = false
 var attack_duration = 0.3  # Time window for hit detection
 
@@ -8,8 +8,8 @@ signal attack_finished
 
 # Called when the node enters the scene tree for the first time
 func _ready():
-	# Disable monitoring (hit detection) when not attacking
-	monitoring = true
+	add_to_group("attacks")
+	monitoring = false
 	connect("body_entered", self, "_on_body_entered")
 
 # Trigger attack with this function
@@ -27,5 +27,7 @@ func end_attack():
 # Handle when an enemy enters the hitbox
 func _on_body_entered(body):
 	if is_attacking and body.is_in_group("enemies"):  
-		body.HealthComponent._UpdateHealth('damage',attack_damage)
-		print ("Hit")  
+		var enemy = body.get_parent()
+		if enemy.has_method("_health_update"):
+			enemy._health_update('damage',attack_damage)
+			#print ("Hit")  

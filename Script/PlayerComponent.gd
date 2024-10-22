@@ -1,10 +1,9 @@
 extends Node2D
 export var MaxHP = 100
-export var acceleration = 200.0
+export var acceleration = 0.0
 export var max_speed = 800.0
 export var friction = 0
 # Reference to the physics component
-onready var physics_component = $PhysicComponent
 onready var p_node = get_node("PhysicComponent")
 onready var h_node = get_node("HealthComponent")
 onready var attack_hitbox = $PhysicComponent/Area2D
@@ -19,7 +18,7 @@ func _ready():
 	h_node._setMaxHP(MaxHP)
 
 
-func _process(_delta):
+func _physics_process(_delta):
 	var input_vector = Vector2.ZERO
 	if attack_timer > 0 :
 		attack_timer -= _delta

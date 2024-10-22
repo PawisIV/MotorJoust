@@ -22,6 +22,7 @@ func _ready():
 	connect("force_right", self, "_on_right")
 	connect("no_input", self, "_on_no_input")
 	connect("inputvector", self, "_on_override_input")
+
 func _physics_process(_delta):
 	# Apply acceleration and update velocity based on input
 	if input_vector.length() > 0:
@@ -60,3 +61,4 @@ func on_set_variable(arg1, arg2, arg3):
 	friction = arg3
 func _on_override_input(arg1):
 	input_vector = arg1
+
