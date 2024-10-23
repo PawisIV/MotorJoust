@@ -1,8 +1,8 @@
 extends Node2D
 
 onready var main = get_node("/root/MainScene")
-var enemy_1 := preload("res://Scene/Enemy/Enemy.tscn")  # Old movement
-var enemy_2 := preload("res://Scene/Enemy/Enemy_2.tscn")  # New movement
+var enemy_1 := preload("res://Scene/Enemy/Enemy_rework.tscn")  # Old movement
+var enemy_2 := preload("res://Scene/Enemy/Enemy_rework2.tscn")  # New movement
 var spawn_points := []
 export var max_enemies = 5  # Maximum number of enemies to spawn
 export var spawn_interval = 20000.0  # Time in seconds between spawns

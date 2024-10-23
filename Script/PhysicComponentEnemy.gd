@@ -61,3 +61,4 @@ func on_set_variable(arg1, arg2, arg3):
 	friction = arg3
 func _on_override_input(arg1):
 	input_vector = arg1
+
