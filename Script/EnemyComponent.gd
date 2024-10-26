@@ -1,8 +1,8 @@
 extends Node2D
 
 export var MaxHP = 30
-export var acceleration = 400.0
-export var max_speed = 800.0
+export var acceleration = 200.0
+export var max_speed = 600.0
 export var friction = 0
 var knockback_duration = 0.3
 var knockback_timer = 0.0
@@ -13,7 +13,7 @@ var zigzag_pattern = false
 var charging = false
 var random_charge_threshold = 0.01  
 
-var retreatstress =0 #Stress
+var fuzzyspeed =0 #Stress
 onready var Text = get_node("PhysicComponent/RichTextLabel") #PlaceHolder
 onready var spit = get_node("PhysicComponent/Sprite") #PlaceHolder
 # Player reference and AI state
@@ -32,24 +32,18 @@ func _ready(): #Initialize
 
 func _physics_process(delta):
 	#Debug Text
-	Text.text = "Charging: " + str(charging) +" Stress: " + str(retreatstress)+ "\nHP :" + str(h_node._returnHealthPercen()*100) +"%"+ "\nInput Vector :" + str(input_vector)
+	Text.text = "Charging: " + str(charging) +" Stress: " + str(fuzzyspeed)+ "\nHP :" + str(h_node._returnHealthPercen()*100) +"%"+ "\nInput Vector :" + str(input_vector)
 	#Fuzzy Skibidi Logic
-	if h_node._returnHealthPercen() > .8 :
-		retreatstress = 0.1
-	elif h_node._returnHealthPercen() > .4 :
-		retreatstress =+ .4
-	elif h_node._returnHealthPercen() <= .4:
-		retreatstress =+ .6
-	retreatstress = clamp(retreatstress, 0, 1) #clamp stress between 0-100%
-	charging = retreatstress < 0.5
- 
+	var distance_to_player = (player.global_position - p_node.global_position).length()
+	fuzzyspeed = _calculate_fuzzyspeed(distance_to_player)
+	charging = fuzzyspeed > 0.5 #Debug
 	var direction = (player.global_position - p_node.global_position).normalized() #get which direction input shold be Example (0,1) is go right
-	input_vector = direction * (charge_speed if charging else acceleration) 
+	input_vector = direction * fuzzyspeed
 	_send_movement_input(input_vector)
 	_animUpdate(input_vector)#update animation
 
 
-func _send_movement_input(input_vector):
+func _send_movement_input(inpust_vector):
 	p_node._on_override_input(input_vector)
 	if input_vector == Vector2.ZERO:
 		p_node.emit_signal("no_input")
@@ -83,3 +77,12 @@ func _health_update(type : String,amount ) : # Not working here yet
 	if type == 'damage' : #Knockback
 		isknockback = true
 	
+func _calculate_fuzzyspeed(distance_to_player: float) -> float:
+	var fuzzyspeed = 0.0
+	if distance_to_player > 500:  # Far distance threshold
+		fuzzyspeed = 1.0  # Maximum speed when far away
+	elif distance_to_player > 200:  # Medium distance threshold
+		fuzzyspeed = 0.6  # Reduced speed when getting closer
+	else:  # Close distance threshold
+		fuzzyspeed = 0.3  # Minimum speed when very close
+	return fuzzyspeed
