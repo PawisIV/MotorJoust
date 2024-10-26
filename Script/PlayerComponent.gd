@@ -3,7 +3,7 @@ export var MaxHP = 100
 export var acceleration = 0.0
 export var max_speed = 800.0
 export var friction = 0
-# Reference to the physics component
+#Reference to the physics component
 onready var p_node = get_node("PhysicComponent")
 onready var h_node = get_node("HealthComponent")
 onready var attack_hitbox = $PhysicComponent/Area2D
