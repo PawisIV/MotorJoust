@@ -270,6 +270,7 @@ script = ExtResource( 7 )
 
 [node name="Area2D" type="Area2D" parent="PhysicComponent"]
 collision_layer = 4
+collision_mask = 2
 script = ExtResource( 8 )
 
 [node name="PlayerAttackHit" type="CollisionShape2D" parent="PhysicComponent/Area2D"]

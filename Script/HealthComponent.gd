@@ -11,7 +11,7 @@ func _setMaxHP(arg1):
 	CurrentHP = MaxHP
 
 func _returnHealthPercen()->float: 
-	return CurrentHP/MaxHP
+	return float(CurrentHP) / float(MaxHP)
 
 
 

@@ -12,8 +12,9 @@ var isknockback = false
 var circle_radius = 25  # Distance from the player to circle around
 var rotation_speed = 1.0  # Speed of circling around the player
 
-onready var HealthComponent = get_node("HealthComponent")
 onready var player
+onready var Text = get_node("PhysicComponent/RichTextLabel")
+onready var spit = get_node("PhysicComponent/Sprite")
 var direction_to_player = Vector2.ZERO
 var input_vector = Vector2.ZERO
 onready var p_node = get_node("PhysicComponent")
@@ -26,16 +27,33 @@ func _ready():
 	h_node._setMaxHP(MaxHP)
 
 func _physics_process(delta):
-	# Calculate the direction to the player
+	Text.text = "\nHP :" + str(h_node._returnHealthPercen()*100) +"%"+ "\nInput Vector :" + str(input_vector)
 	var direction_to_player = (player.global_position - p_node.global_position).normalized()
-	
-	# Create a perpendicular vector to make the enemy circle around the player
 	var perpendicular = Vector2(-direction_to_player.y, direction_to_player.x)
-	
-	# Combine both the direction to the player and the perpendicular to make a circular movement
 	input_vector = direction_to_player + perpendicular * rotation_speed
-	
 	_send_movement_input(input_vector)
+	_animUpdate(input_vector)
+
+func _animUpdate(input_vector): #Debug Placeholder
+	var angle_degrees = input_vector.angle() * 180 / PI  
+	if angle_degrees < 0:
+		angle_degrees += 360
+	if angle_degrees >= 337.5 or angle_degrees < 22.5:
+		spit.rotation_degrees = 0           # Right
+	elif angle_degrees >= 22.5 and angle_degrees < 67.5:
+		spit.rotation_degrees = -45         # Up-Right
+	elif angle_degrees >= 67.5 and angle_degrees < 112.5:
+		spit.rotation_degrees = -90         # Up
+	elif angle_degrees >= 112.5 and angle_degrees < 157.5:
+		spit.rotation_degrees = -135        # Up-Left
+	elif angle_degrees >= 157.5 and angle_degrees < 202.5:
+		spit.rotation_degrees = 180         # Left
+	elif angle_degrees >= 202.5 and angle_degrees < 247.5:
+		spit.rotation_degrees = 135         # Down-Left
+	elif angle_degrees >= 247.5 and angle_degrees < 292.5:
+		spit.rotation_degrees = 90          # Down
+	elif angle_degrees >= 292.5 and angle_degrees < 337.5:
+		spit.rotation_degrees = 45          # Down-Right
 
 func _send_movement_input(input_vector):
 	p_node._on_override_input(input_vector)
